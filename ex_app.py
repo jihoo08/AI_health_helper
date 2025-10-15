@@ -2,7 +2,7 @@ import streamlit as st
 from openai import OpenAI
 import os
 from dotenv import load_dotenv
-
+import hospital_data
 # .env 파일 로드
 load_dotenv()
 
