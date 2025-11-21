@@ -468,12 +468,7 @@ if consult_button and hospital_search is not None:
                     if hospital_type and pd.notna(hospital_type):
                         st.write(f"**🏢 {get_translation(lang, 'hospital_type')}:** {hospital_type}")
                     
-                    # 영업 상태
-                    status = hospital.get('영업상태명', '')
-                    if status and pd.notna(status):
-                        status_text = f"{get_translation(lang, 'normal')}" if status == "영업/정상" else status
-                        status_color = "🟢" if status == "영업/정상" else "🟡"
-                        st.write(f"**📊 {get_translation(lang, 'status')}:** {status_color} {status_text}")
+                    
         st.markdown('</div>', unsafe_allow_html=True)
 
 # 데이터셋 정보 표시
@@ -482,7 +477,7 @@ if hospital_search and not hospital_search.data.empty:
         st.write(f"총 {len(hospital_search.data)} {get_translation(lang, 'total_hospitals')}")
         
         # 보여줄 컬럼 선택
-        display_columns = ['사업장명', '소재지전체주소', '진료과목내용명', '의료기관종별명', '영업상태명']
+        display_columns = ['사업장명', '소재지전체주소', '진료과목내용명', '의료기관종별명']
         available_columns = [col for col in display_columns if col in hospital_search.data.columns]
         
         if available_columns:
