@@ -5,9 +5,70 @@ from dotenv import load_dotenv
 import pandas as pd
 import sys
 from translations import get_translation
+import re  # 정규표현식 사용을 위해 import 추가
 
 # .env 파일 로드
 load_dotenv()
+
+# 개인정보 보호 함수
+def simple_privacy_protection(text):
+    """텍스트에서 간단한 개인정보 패턴 제거"""
+    if not text or pd.isna(text):
+        return ""
+    
+    protected_text = str(text)
+    
+    # 전화번호 패턴 제거
+    protected_text = re.sub(r'\d{2,3}-\d{3,4}-\d{4}', '[전화번호]', protected_text)
+    protected_text = re.sub(r'01[016789]-\d{3,4}-\d{4}', '[전화번호]', protected_text)
+    
+    # 이메일 패턴 제거
+    protected_text = re.sub(r'\S+@\S+\.\S+', '[이메일]', protected_text)
+    
+    # 주민등록번호 패턴 제거
+    protected_text = re.sub(r'\d{6}-\d{7}', '[주민번호]', protected_text)
+    
+    return protected_text
+
+def protect_location(location):
+    """위치 정보 보호 (너무 상세한 주소는 제거)"""
+    if not location:
+        return ""
+    
+    # 시/군/구 수준에서만 유지
+    location_str = str(location)
+    
+    # 시/도 정보 추출
+    if '서울' in location_str:
+        return '서울'
+    elif '부산' in location_str:
+        return '부산'
+    elif '대구' in location_str:
+        return '대구'
+    elif '인천' in location_str:
+        return '인천'
+    elif '광주' in location_str:
+        return '광주'
+    elif '대전' in location_str:
+        return '대전'
+    elif '울산' in location_str:
+        return '울산'
+    elif '세종' in location_str:
+        return '세종'
+    elif '경기' in location_str:
+        return '경기'
+    elif '강원' in location_str:
+        return '강원'
+    elif '충청' in location_str:
+        return '충청'
+    elif '전라' in location_str:
+        return '전라'
+    elif '경상' in location_str:
+        return '경상'
+    elif '제주' in location_str:
+        return '제주'
+    else:
+        return location_str[:10] + '...'  # 너무 길면 줄임
 
 # OpenAI 클라이언트 초기화
 api_key = os.getenv("OPENAI_API_KEY")
@@ -38,7 +99,34 @@ hospital_search = init_hospital_search()
 if 'language' not in st.session_state:
     st.session_state.language = 'ko'
 
+lang = st.session_state.language
+
+
 # CSS 스타일 적용
+st.markdown("""
+<style>
+    /* 개인정보 보호 배지 */
+    .privacy-badge {
+        background-color: #e8f5e8;
+        border: 1px solid #27ae60;
+        border-radius: 8px;
+        padding: 12px;
+        margin: 10px 0;
+        font-size: 0.9em;
+    }
+</style>
+""", unsafe_allow_html=True)
+
+# 개인정보 보호 안내
+st.sidebar.markdown(f"""
+<div class="privacy-badge">
+🔒 <strong>{get_translation(lang, "privacy_title")}</strong><br>
+- {get_translation(lang, "privacy_line1")}
+- {get_translation(lang, "privacy_line2")}
+- {get_translation(lang, "privacy_line3")}
+</div>
+""", unsafe_allow_html=True)
+
 st.markdown("""
 <style>
     /* 전체 배경 색상 */
@@ -177,27 +265,6 @@ st.markdown("""
         border-radius: 10px;
         margin: 10px 0;
     }
-    
-    /* 언어 버튼 스타일 */
-    .stButton button {
-        font-size: 14px !important;
-        padding: 8px 12px !important;
-        margin: 3px 0 !important;
-    }
-    
-    /* 나머지 CSS는 동일하게 유지 */
-    .stApp { background-color: #f8f9fa; }
-    .main-title { color: #2c3e50; text-align: center; padding: 20px 0; font-size: 2.5rem; font-weight: 700; margin-bottom: 30px; }
-    .subheader { color: #34495e; font-size: 1.4rem; font-weight: 600; margin: 25px 0 15px 0; padding-bottom: 10px; border-bottom: 2px solid #3498db; }
-    .location-input { padding: 15px; border-radius: 8px; border: 2px solid #3498db; margin: 15px 0; background-color: transparent; }
-    .symptom-input { padding: 15px; border-radius: 8px; border: 2px solid #ff9800; margin: 15px 0; background-color: transparent; }
-    .stTextInput input:focus, .stTextArea textarea:focus, [data-baseweb="input"] input:focus, [data-baseweb="textarea"] textarea:focus, .stTextInput [data-baseweb="input"]:focus-within, .stTextArea [data-baseweb="textarea"]:focus-within { outline: none !important; box-shadow: none !important; border-color: #e0e0e0 !important; }
-    .stTextInput input { border: 1px solid #e0e0e0 !important; border-radius: 4px !important; padding: 8px 12px !important; }
-    .stTextArea textarea { border: 1px solid #e0e0e0 !important; border-radius: 4px !important; padding: 8px 12px !important; }
-    .slider-container { background-color: white; padding: 15px; border-radius: 10px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); margin: 10px 0; }
-    .ai-response { background-color: white; padding: 25px; border-radius: 10px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); margin: 20px 0; border-left: 4px solid #27ae60; }
-    .hospital-info { background-color: white; padding: 20px; border-radius: 10px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); margin: 15px 0; }
-    .warning-box { background-color: #fff3cd; padding: 15px; border-radius: 8px; border: 1px solid #ffeaa7; margin: 15px 0; }
 </style>
 """, unsafe_allow_html=True)
 
@@ -308,7 +375,7 @@ additional_symptoms = st.text_area(
 )
 st.markdown('</div>', unsafe_allow_html=True)
 
-# 상담 버튼
+# 상담 버튼 - 이 부분이 조건문보다 앞에 와야 합니다
 col1, col2, col3 = st.columns([1,2,1])
 with col2:
     consult_button = st.button(get_translation(lang, "consult_button"), use_container_width=True)
@@ -319,7 +386,7 @@ if not location and consult_button:
     st.warning(get_translation(lang, "location_warning"))
     st.markdown('</div>', unsafe_allow_html=True)
 
-# 상담 처리
+# 상담 처리 - 이 부분이 버튼 정의 이후에 와야 합니다
 if consult_button and hospital_search is not None:
     # 증상 데이터를 문자열로 변환
     active_symptoms = {k: v for k, v in symptoms.items() if v > 0}
@@ -372,14 +439,14 @@ if consult_button and hospital_search is not None:
     
     # 언어별 AI 프롬프트 설정
     language_prompts = {
-    'ko': "한국어로 답변해주세요.",
-    'en': "Please respond in English.",
-    'fil': "Mangyaring sumagot sa Filipino.",
-    'vi': "Hãy trả lời bằng tiếng Việt.",
-    'zh': "请用中文回答。",
-    'th': "กรุณาตอบเป็นภาษาไทย",
-    'uz': "Iltimos, o'zbek tilida javob bering."
-}
+        'ko': "한국어로 답변해주세요.",
+        'en': "Please respond in English.",
+        'fil': "Mangyaring sumagot sa Filipino.",
+        'vi': "Hãy trả lời bằng tiếng Việt.",
+        'zh': "请用中文回答。",
+        'th': "กรุณาตอบเป็นภาษาไทย",
+        'uz': "Iltimos, o'zbek tilida javob bering."
+    }
     
     # 프롬프트 구성
     user_prompt = f"""
@@ -468,7 +535,6 @@ if consult_button and hospital_search is not None:
                     if hospital_type and pd.notna(hospital_type):
                         st.write(f"**🏢 {get_translation(lang, 'hospital_type')}:** {hospital_type}")
                     
-                    
         st.markdown('</div>', unsafe_allow_html=True)
 
 # 데이터셋 정보 표시
@@ -477,7 +543,7 @@ if hospital_search and not hospital_search.data.empty:
         st.write(f"총 {len(hospital_search.data)} {get_translation(lang, 'total_hospitals')}")
         
         # 보여줄 컬럼 선택
-        display_columns = ['사업장명', '소재지전체주소', '진료과목내용명', '의료기관종별명']
+        display_columns = ['사업장명', '소재지전체주소', '진료과목내용명', '의료기관종별명', '영업상태명']
         available_columns = [col for col in display_columns if col in hospital_search.data.columns]
         
         if available_columns:

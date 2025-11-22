@@ -41,7 +41,11 @@ TRANSLATIONS = {
         "tips_title": "💡 사용 팁",
         "tip1": "- 증상의 심각도를 0-10점으로 선택해주세요",
         "tip2": "- 위치를 정확히 입력할수록 가까운 병원을 추천해드려요",
-        "tip3": "- 추가 증상을 자세히 설명해주시면 더 정확한 조언을 받을 수 있어요"
+        "tip3": "- 추가 증상을 자세히 설명해주시면 더 정확한 조언을 받을 수 있어요",
+        "privacy_title": "개인정보 보호",
+        "privacy_line1": "개인정보는 자동으로 보호됩니다",
+        "privacy_line2": "전화번호, 이메일 등은 제거됩니다",
+        "privacy_line3": "상담은 익명으로 진행됩니다",
     },
     "en": {
         "title": "Medical Symptom AI Consultation Bot 🩺",
@@ -82,7 +86,11 @@ TRANSLATIONS = {
         "tips_title": "💡 Usage Tips",
         "tip1": "- Select symptom severity on a scale of 0-10",
         "tip2": "- The more accurately you enter your location, the better we can recommend nearby hospitals",
-        "tip3": "- The more detailed your description of additional symptoms, the more accurate advice you'll receive"
+        "tip3": "- The more detailed your description of additional symptoms, the more accurate advice you'll receive",
+        "privacy_title": "Privacy Protection",
+        "privacy_line1": "Personal information is automatically protected",
+        "privacy_line2": "Phone numbers, emails, etc. are removed",
+        "privacy_line3": "Consultation is conducted anonymously",
     },
     "fil": {
         "title": "AI Konsultasyon Bot para sa Sintomas ng Kalusugan 🩺",
@@ -123,7 +131,11 @@ TRANSLATIONS = {
         "tips_title": "💡 Mga Tip sa Paggamit",
         "tip1": "- Piliin ang kalubhaan ng sintomas sa sukat na 0-10",
         "tip2": "- Kapag mas tumpak ang iyong lokasyon, mas mabuting mga ospital ang mai rerekomenda",
-        "tip3": "- Kapag mas detalyado ang paglalarawan ng mga sintomas, mas tumpak na payo ang matatanggap mo"
+        "tip3": "- Kapag mas detalyado ang paglalarawan ng mga sintomas, mas tumpak na payo ang matatanggap mo",
+        "privacy_title": "Proteksyon ng Privacy",
+        "privacy_line1": "Ang personal na impormasyon ay awtomatikong pinoprotektahan",
+        "privacy_line2": "Ang mga numero ng telepono, email, atbp. ay tinanggal",
+        "privacy_line3": "Ang konsultasyon ay isinasagawa nang anonymous",
     },
     "vi": {
         "title": "Bot Tư vấn AI về Triệu chứng Y tế 🩺",
@@ -164,7 +176,11 @@ TRANSLATIONS = {
         "tips_title": "💡 Mẹo Sử dụng",
         "tip1": "- Chọn mức độ nghiêm trọng của triệu chứng trên thang điểm 0-10",
         "tip2": "- Bạn nhập vị trí càng chính xác, chúng tôi càng có thể đề xuất bệnh viện gần đó tốt hơn",
-        "tip3": "- Bạn mô tả triệu chứng bổ sung càng chi tiết, bạn sẽ nhận được lời khuyên càng chính xác"
+        "tip3": "- Bạn mô tả triệu chứng bổ sung càng chi tiết, bạn sẽ nhận được lời khuyên càng chính xác",
+        "privacy_title": "Bảo vệ Quyền riêng tư",
+        "privacy_line1": "Thông tin cá nhân được bảo vệ tự động",
+        "privacy_line2": "Số điện thoại, email, v.v. đã bị xóa",
+        "privacy_line3": "Tư vấn được tiến hành ẩn danh",
     },
     "zh": {
         "title": "医疗症状AI咨询机器人 🩺",
@@ -205,7 +221,11 @@ TRANSLATIONS = {
         "tips_title": "💡 使用提示",
         "tip1": "- 请在0-10分范围内选择症状严重程度",
         "tip2": "- 位置输入越准确，推荐的附近医院越合适",
-        "tip3": "- 附加症状描述越详细，获得的建议越准确"
+        "tip3": "- 附加症状描述越详细，获得的建议越准确",
+        "privacy_title": "隐私保护",
+        "privacy_line1": "个人信息自动受到保护",
+        "privacy_line2": "电话号码、电子邮件等已被删除",
+        "privacy_line3": "咨询以匿名方式进行",
     },
     "th": {
         "title": "บอทให้คำปรึกษาอาการทางการแพทย์ด้วย AI 🩺",
@@ -246,7 +266,11 @@ TRANSLATIONS = {
         "tips_title": "💡 เคล็ดลับการใช้งาน",
         "tip1": "- เลือกระดับความรุนแรงของอาการในระดับ 0-10",
         "tip2": "- ยิ่งคุณป้อนตำแหน่งที่ตั้งได้แม่นยำเท่าไร เราก็จะสามารถแนะนำโรงพยาบาลใกล้เคียงได้ดีขึ้น",
-        "tip3": "- ยิ่งคุณอธิบายอาการเพิ่มเติมได้ละเอียดเท่าไร คุณก็จะได้รับคำแนะนำที่แม่นยำมากขึ้น"
+        "tip3": "- ยิ่งคุณอธิบายอาการเพิ่มเติมได้ละเอียดเท่าไร คุณก็จะได้รับคำแนะนำที่แม่นยำมากขึ้น",
+        "privacy_title": "การปกป้องความเป็นส่วนตัว",
+        "privacy_line1": "ข้อมูลส่วนตัวได้รับการปกป้องโดยอัตโนมัติ",
+        "privacy_line2": "หมายเลขโทรศัพท์ อีเมล ฯลฯ ถูกลบออก",
+        "privacy_line3": "การให้คำปรึกษาดำเนินการโดยไม่ระบุชื่อ",
     },
     "uz": {
         "title": "Tibbiy Simptomlar AI Maslahat Boti 🩺",
@@ -287,7 +311,11 @@ TRANSLATIONS = {
         "tips_title": "💡 Foydalanish Bo'yicha Maslahatlar",
         "tip1": "- Simptomlarning og'irlik darajasini 0-10 shkalasida tanlang",
         "tip2": "- Manzilingizni qanchalik aniq kiritishingiz, shuncha yaqin shifoxonalarni tavsiya qila olamiz",
-        "tip3": "- Qo'shimcha simptomlarni qanchalik batafsil tasvirlashingiz, shuncha aniq maslahat olasiz"
+        "tip3": "- Qo'shimcha simptomlarni qanchalik batafsil tasvirlashingiz, shuncha aniq maslahat olasiz",
+        "privacy_title": "Maxfiylikni Himoya qilish",
+        "privacy_line1": "Shaxsiy ma'lumotlar avtomatik ravishda himoyalanadi",
+        "privacy_line2": "Telefon raqamlari, elektron pochta va boshqalar olib tashlanadi",
+        "privacy_line3": "Konsultatsiya anonim tarzda olib boriladi",
     }
 }
 
